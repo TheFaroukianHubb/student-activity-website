@@ -441,7 +441,18 @@ h2,
 
 .leader-card .member-photo {
     min-height: 210px;
-    background: var(--yellow);
+    height: 210px;
+    background: transparent;
+    overflow: hidden;
+    padding: 0;
+}
+
+.leader-card .member-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border: none;
 }
 
 .member-photo span {
@@ -1244,3 +1255,174 @@ nav a:focus-visible {
 .navbar .logo span {
   color: var(--hub-navy);
 }
+
+/* Back to Top button */
+.back-to-top {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9999;
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 50%;
+    background: #172b4d;
+    color: #f5d76e;
+    font-size: 28px;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+pointer-events: none;
+transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.back-to-top.visible {
+    display: flex;
+    opacity: 1;
+pointer-events: auto;
+}
+
+.back-to-top:hover {
+    transform: translateY(-3px);
+}
+
+/* Committee Leader Cards */
+.leaders-grid {
+    max-width: 850px;
+    margin-inline: auto;
+    gap: 32px;
+}
+
+.leader-card {
+    border: 1px solid rgba(245, 215, 110, 0.65);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.leader-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14);
+}
+
+
+.leader-card .member-photo {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.leader-card .member-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+
+.leader-card .card-tag {
+    color: #b69a35;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+}
+
+.leader-card h3 {
+    margin-top: 8px;
+    margin-bottom: 6px;
+}
+
+
+/* Square photos for committee members */
+.member-card .member-photo {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.member-card .member-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+/* Committee member carousels */
+.member-carousel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+}
+
+.carousel-viewport {
+    overflow: hidden;
+    width: 100%;
+    min-width: 0;
+}
+
+.carousel-track {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 20px;
+    transition: transform 0.45s ease;
+    will-change: transform;
+}
+
+.carousel-track .member-card {
+    flex: 0 0 calc((100% - 60px) / 4);
+    min-width: 0;
+}
+
+.carousel-arrow {
+    flex: 0 0 38px;
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 50%;
+    background: #f4c542;
+    color: #17233d;
+    font-size: 27px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+}
+
+.carousel-arrow:hover {
+    background: #e5ad20;
+}
+
+@media (max-width: 800px) {
+    .carousel-track .member-card {
+        flex-basis: calc((100% - 20px) / 2);
+    }
+}
+
+@media (max-width: 520px) {
+    .carousel-track .member-card {
+        flex-basis: 100%;
+    }
+
+    .member-carousel {
+        gap: 6px;
+    }
+
+    .carousel-arrow {
+        flex-basis: 32px;
+        width: 32px;
+        height: 32px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .carousel-track {
+        transition: none;
+    }
+}
+
