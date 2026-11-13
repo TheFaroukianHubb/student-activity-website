@@ -159,3 +159,132 @@ document.addEventListener("keydown", event => {
 renderGallery();
 
 // Merchandise is marked as pending in the HTML. Ordering is intentionally disabled until launch.
+
+/* Back to Top button */
+const backToTop = document.createElement("button");
+backToTop.textContent = "↑";
+backToTop.className = "back-to-top";
+backToTop.setAttribute("aria-label", "Back to top");
+backToTop.type = "button";
+document.body.appendChild(backToTop);
+
+window.addEventListener("scroll", () => {
+    backToTop.classList.toggle("visible", window.scrollY > 400);
+});
+
+backToTop.addEventListener("click", () => {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
+
+
+// Payment integration preview: deliberately simulated; it never initiates a payment or sends notifications.
+const simulatePaymentButton = document.querySelector("#simulate-payment");
+const testAmountInput = document.querySelector("#payment-test-amount");
+const paymentTestStatus = document.querySelector("#payment-test-status");
+const paymentNotificationPreview = document.querySelector("#payment-notification-preview");
+const paymentNotificationMessage = document.querySelector("#payment-notification-message");
+
+simulatePaymentButton?.addEventListener("click", () => {
+    const amount = Number(testAmountInput?.value);
+    if (!Number.isFinite(amount) || amount <= 0) {
+        paymentTestStatus.textContent = "Enter a valid amount greater than zero.";
+        paymentNotificationPreview.hidden = true;
+        return;
+    }
+
+    const reference = `DEMO-${Date.now().toString().slice(-8)}`;
+    paymentTestStatus.textContent = "Demo event: payment marked as verified by the test simulator.";
+    paymentNotificationMessage.textContent = `TEST PAYMENT VERIFIED · EGP ${amount.toFixed(2)} · Reference ${reference}. This is a simulated event, not a real bank confirmation.`;
+    paymentNotificationPreview.hidden = false;
+});
+// Committee member carousels
+document.querySelectorAll(".member-carousel").forEach((carousel) => {
+    const track = carousel.querySelector(".carousel-track");
+    const cards = Array.from(track.children);
+    const prev = carousel.querySelector(".carousel-prev");
+    const next = carousel.querySelector(".carousel-next");
+
+    let index = 0;
+    let timer;
+    let paused = false;
+
+    function visibleCards() {
+        if (window.innerWidth <= 520) return 1;
+        if (window.innerWidth <= 800) return 2;
+        return 4;
+    }
+
+    function updateCarousel() {
+        const gap = parseFloat(getComputedStyle(track).gap) || 0;
+        const cardWidth = cards[0].getBoundingClientRect().width;
+        const maxIndex = Math.max(0, cards.length - visibleCards());
+
+        index = Math.min(index, maxIndex);
+
+        track.style.transform =
+            `translateX(-${index * (cardWidth + gap)}px)`;
+
+        prev.disabled = index === 0;
+        next.disabled = index === maxIndex;
+    }
+
+    function moveNext() {
+        const maxIndex = Math.max(0, cards.length - visibleCards());
+        index = index >= maxIndex ? 0 : index + 1;
+        updateCarousel();
+    }
+
+    function movePrev() {
+        const maxIndex = Math.max(0, cards.length - visibleCards());
+        index = index <= 0 ? maxIndex : index - 1;
+        updateCarousel();
+    }
+
+    function startTimer() {
+        clearInterval(timer);
+        if (!paused && cards.length > visibleCards()) {
+            timer = setInterval(moveNext, 1000);
+        }
+    }
+
+    next.addEventListener("click", () => {
+        moveNext();
+        startTimer();
+    });
+
+    prev.addEventListener("click", () => {
+        movePrev();
+        startTimer();
+    });
+
+    carousel.addEventListener("mouseenter", () => {
+        paused = true;
+        clearInterval(timer);
+    });
+
+    carousel.addEventListener("mouseleave", () => {
+        paused = false;
+        startTimer();
+    });
+
+    carousel.addEventListener("focusin", () => {
+        paused = true;
+        clearInterval(timer);
+    });
+
+    carousel.addEventListener("focusout", () => {
+        paused = false;
+        startTimer();
+    });
+
+    window.addEventListener("resize", () => {
+        updateCarousel();
+        startTimer();
+    });
+
+    updateCarousel();
+    startTimer();
+});
