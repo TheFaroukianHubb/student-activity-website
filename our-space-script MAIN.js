@@ -110,7 +110,7 @@ function createGalleryCard(photo, index) {
 		const image = document.createElement("img");
 		image.className = "gallery-photo";
 		image.src = photo.src;
-		image.alt = photo.caption;
+		image.alt = photo.title;
 		image.loading = "lazy";
 		image.addEventListener("error", () => image.replaceWith(createArtwork(photo)), { once: true });
 		openButton.append(image);
@@ -144,12 +144,13 @@ imageOffsetY = 0;
 	viewerCounter.textContent = `${String(activePhotoIndex + 1).padStart(2, "0")} / ${String(visiblePhotos.length).padStart(2, "0")}`;
 	viewerCategory.textContent = photo.categoryLabel.toUpperCase();
 	viewerTitle.textContent = photo.title;
-	viewerCaption.textContent = photo.caption;
+	viewerCaption.textContent = "";
+viewerCaption.hidden = true;
 
 	if (photo.src) {
 		viewerImage.hidden = false;
 		viewerImage.src = photo.src;
-		viewerImage.alt = photo.caption;
+		image.alt = photo.title;
 		applyViewerZoom();
 		viewerArt.hidden = true;
 		viewerArt.replaceChildren();
