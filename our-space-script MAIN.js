@@ -150,7 +150,7 @@ viewerCaption.hidden = true;
 	if (photo.src) {
 		viewerImage.hidden = false;
 		viewerImage.src = photo.src;
-		image.alt = photo.title;
+	viewerImage.alt = photo.title;
 		applyViewerZoom();
 		viewerArt.hidden = true;
 		viewerArt.replaceChildren();
