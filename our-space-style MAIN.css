@@ -1692,3 +1692,33 @@ pointer-events: auto;
         font-size: 0.75rem;
     }
 }
+/* FORCE PHOTO VIEWER ZOOM CONTROLS TO SHOW */
+
+.photo-viewer .viewer-navigation {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative;
+    z-index: 10;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.photo-viewer #viewer-zoom-in,
+.photo-viewer #viewer-zoom-out {
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: auto !important;
+    min-width: 85px;
+    height: 40px !important;
+    padding: 8px 12px !important;
+    align-items: center;
+    justify-content: center;
+    color: white !important;
+    background: #172338 !important;
+    border: 1px solid rgba(255,255,255,0.4) !important;
+    border-radius: 8px !important;
+    font-size: 13px !important;
+    white-space: nowrap;
+}
