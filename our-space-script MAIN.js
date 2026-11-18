@@ -35,13 +35,7 @@ function changeViewerZoom(amount) {
     applyViewerZoom();
 }
 
-viewerZoomIn.addEventListener("click", () => {
-    changeViewerZoom(0.5);
-});
 
-viewerZoomOut.addEventListener("click", () => {
-    changeViewerZoom(-0.5);
-});
 
 {
     viewerZoom = Math.min(3, Math.max(1, viewerZoom + amount));
