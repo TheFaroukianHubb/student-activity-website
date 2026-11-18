@@ -35,17 +35,6 @@ function changeViewerZoom(amount) {
     applyViewerZoom();
 }
 
-function changeViewerZoom(amount) {
-    viewerZoom = Math.min(3, Math.max(1, viewerZoom + amount));
-    applyViewerZoom();
-}
-
-
-
-{
-    viewerZoom = Math.min(3, Math.max(1, viewerZoom + amount));
-    applyViewerZoom();
-}
 let isDragging = false;
 let dragStartX = 0;
 let dragStartY = 0;
