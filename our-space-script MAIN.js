@@ -26,8 +26,8 @@ function applyViewerZoom() {
 
     viewerImage.style.cursor = viewerZoom > 1 ? "grab" : "default";
 
-    viewerZoomOut.disabled = viewerZoom <= 1;
-    viewerZoomIn.disabled = viewerZoom >= 3;
+    if (viewerZoomOut) viewerZoomOut.disabled = viewerZoom <= 1;
+if (viewerZoomIn) viewerZoomIn.disabled = viewerZoom >= 3;
 }
 
 function changeViewerZoom(amount) {
