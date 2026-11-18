@@ -30,14 +30,9 @@ function applyViewerZoom() {
     viewerZoomIn.disabled = viewerZoom >= 3;
 }
 
-function applyViewerZoom() {
-    viewerImage.style.transform =
-        `translate(${imageOffsetX}px, ${imageOffsetY}px) scale(${viewerZoom})`;
-
-    viewerImage.style.cursor = viewerZoom > 1 ? "grab" : "default";
-
-    viewerZoomOut.disabled = viewerZoom <= 1;
-    viewerZoomIn.disabled = viewerZoom >= 3;
+function changeViewerZoom(amount) {
+    viewerZoom = Math.min(3, Math.max(1, viewerZoom + amount));
+    applyViewerZoom();
 }
 
 function changeViewerZoom(amount) {
