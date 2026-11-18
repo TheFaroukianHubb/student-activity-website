@@ -1722,3 +1722,225 @@ pointer-events: auto;
     font-size: 13px !important;
     white-space: nowrap;
 }
+
+
+/* ===== NEW FAROUKIAN HUB BRAND THEME ===== */
+
+:root {
+    --ink: #17143A;
+    --paper: #E8E2D2;
+    --yellow: #8294B4;
+    --muted: #626777;
+    --line: #C9C5BB;
+    --white: #F7F5EF;
+
+    --hub-navy: #17143A;
+    --hub-navy-dark: #080F12;
+    --hub-butter: #8294B4;
+}
+
+/* NAVIGATION BRAND LOCKUP */
+
+.brand-lockup {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.brand-mark {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: #17143A;
+    border: 2px solid #8294B4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.brand-mark img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 5px;
+}
+
+.navbar .logo {
+    font-size: 1.4rem;
+    color: #17143A;
+}
+
+.navbar .logo span {
+    color: #17143A;
+    background: linear-gradient(
+        transparent 60%,
+        #8294B4 60%
+    );
+}
+
+/* NAVIGATION */
+
+.navbar {
+    background: #E8E2D2;
+    border-color: #C9C5BB;
+}
+
+.navbar nav a:hover,
+.navbar nav a:focus-visible {
+    color: #8294B4;
+}
+
+.nav-cta {
+    border-color: #17143A;
+}
+
+.nav-cta:hover {
+    background: #8294B4;
+}
+
+/* BUTTONS AND ACCENTS */
+
+.button-dark,
+.gallery-filter.is-active {
+    background: #17143A;
+    border-color: #17143A;
+}
+
+.button-dark:hover {
+    background: #080F12;
+}
+
+.button-light:hover {
+    background: #8294B4;
+}
+
+.team-group-title span {
+    background: #8294B4;
+}
+
+.leader-card {
+    border-color: rgba(130, 148, 180, 0.65);
+}
+
+.leader-card .card-tag {
+    color: #65799E;
+}
+
+/* DECORATIVE SECTIONS */
+
+.hero-art,
+.closing {
+    background: #8294B4;
+}
+
+.art-spark,
+.art-spark::after,
+.cover-star,
+.cover-star::after {
+    background: #17143A;
+}
+
+.yearbook {
+    background: #D6D1C4;
+}
+
+.yearbook-cover {
+    background: #17143A;
+    box-shadow: 18px 18px 0 #8294B4;
+}
+
+/* GALLERY */
+
+.gallery-art-one {
+    background: #8294B4;
+}
+
+.gallery-art-two {
+    background: #D6D1C4;
+}
+
+.gallery-art-three {
+    background: #B7C1D2;
+}
+
+/* TEAM CAROUSEL */
+
+.carousel-arrow {
+    background: #8294B4;
+    color: #17143A;
+}
+
+.carousel-arrow:hover {
+    background: #65799E;
+}
+
+/* MERCH */
+
+.product-shirt {
+    background: #D6D1C4;
+}
+
+.product-hoodie {
+    background: #B7C1D2;
+}
+
+.product-shirt p {
+    background: #17143A;
+    color: #E8E2D2;
+}
+
+.product-hoodie p {
+    background: #8294B4;
+    color: #17143A;
+}
+
+/* SUGGESTIONS */
+
+.suggestions-section {
+    background: #D6D1C4;
+    color: #17143A;
+}
+
+.suggestions-section .section-eyebrow,
+.suggestions-section h2 {
+    color: #17143A;
+}
+
+.suggestions-container button {
+    background: #17143A;
+}
+
+.suggestions-container button:hover {
+    background: #080F12;
+}
+
+/* MOBILE BRAND */
+
+@media (max-width: 700px) {
+    .brand-mark {
+        width: 48px;
+        height: 48px;
+    }
+
+    .navbar .logo {
+        font-size: 1.15rem;
+    }
+
+    .brand-lockup {
+        gap: 9px;
+    }
+}
+
+@media (max-width: 400px) {
+    .brand-mark {
+        width: 42px;
+        height: 42px;
+    }
+
+    .navbar .logo {
+        font-size: 1rem;
+    }
+}
