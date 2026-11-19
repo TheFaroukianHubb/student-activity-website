@@ -417,34 +417,41 @@
 		</section>
 
 		<section class="gallery section-pad" id="gallery">
-			<div class="section-heading">
-				<div>
-					<p class="eyebrow">LITTLE MOMENTS, BIG MEMORIES</p>
-					<h2>Life lately<span>.</span></h2>
-				</div>
-				<p class="section-description">
-					A glimpse of everything we've been up to.
-				</p>
-			</div>
-
 			
-<div class="gallery-filters" role="group" aria-label="Filter gallery by category">
-    <button class="gallery-filter is-active" type="button" data-filter="all" aria-pressed="true">All Moments</button>
-    <button class="gallery-filter" type="button" data-filter="events" aria-pressed="false">Events</button>
-    <button class="gallery-filter" type="button" data-filter="activities" aria-pressed="false">Activities</button>
-    <button class="gallery-filter" type="button" data-filter="behind-the-scenes" aria-pressed="false">Behind the Scenes</button>
-	<button class="gallery-filter" data-filter="good-old-days">
-    The Good Old Days
-</button>
-</div>
+<details class="gallery-collapsible">
+    <summary class="gallery-toggle">
+        <div class="gallery-toggle-heading">
+            <p class="eyebrow">LITTLE MOMENTS, BIG MEMORIES</p>
+            <h2>Life lately<span>.</span></h2>
+            <p class="section-description">
+                A glimpse of everything we've been up to.
+            </p>
+        </div>
 
+        <span class="gallery-toggle-arrow" aria-hidden="true">⌄</span>
+    </summary>
 
-			<div class="gallery-grid" id="gallery-grid" aria-live="polite"></div>
-			<p class="gallery-empty" id="gallery-empty" hidden>No moments in this category yet. Check back soon.</p>
+    <div class="gallery-content">
+        <div class="gallery-filters" role="group" aria-label="Filter gallery by category">
+            <button class="gallery-filter is-active" type="button" data-filter="all" aria-pressed="true">All Moments</button>
+            <button class="gallery-filter" type="button" data-filter="events" aria-pressed="false">Events</button>
+            <button class="gallery-filter" type="button" data-filter="activities" aria-pressed="false">Activities</button>
+            <button class="gallery-filter" type="button" data-filter="behind-the-scenes" aria-pressed="false">Behind the Scenes</button>
+            <button class="gallery-filter" type="button" data-filter="good-old-days" aria-pressed="false">The Good Old Days</button>
+        </div>
 
-			<p class="demo-note">
-    Every photo holds a memory. Browse our collection and explore the moments that make our school year special.
-</p>
+        <div class="gallery-grid" id="gallery-grid" aria-live="polite"></div>
+
+        <p class="gallery-empty" id="gallery-empty" hidden>
+            No moments in this category yet. Check back soon.
+        </p>
+
+        <p class="demo-note">
+            Every photo holds a memory. Browse our collection and explore the moments that make our school year special.
+        </p>
+    </div>
+</details>
+
 		</section>
 
 		<dialog class="photo-viewer" id="photo-viewer" aria-label="Gallery photo viewer">
