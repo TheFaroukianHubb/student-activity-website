@@ -871,22 +871,23 @@ h2,
         font-size: 3.5rem;
     }
 
-    .hero-art {
-        min-height: 340px;
-    }
-.hero-art {
+   .hero-art {
     min-height: 340px;
+    display: flex;
+    align-items: stretch;
 }
 
 .art-main {
     width: 100%;
     min-height: 340px;
+    font-size: initial;
 }
 
 .hero-photo {
     width: 100%;
     height: 340px;
     display: block;
+    overflow: hidden;
 }
 
 .hero-photo img {
@@ -894,10 +895,8 @@ h2,
     height: 100%;
     display: block;
     object-fit: cover;
+    object-position: center;
 }
-    .art-main {
-        font-size: 4.2rem;
-    }
 
     .section-pad {
         padding: 65px 5%;
