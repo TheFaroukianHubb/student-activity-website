@@ -2092,3 +2092,23 @@ pointer-events: auto;
     position: absolute;
     top: 13px;
 }
+
+.gallery-toggle-arrow {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative;
+    font-size: 0 !important;
+}
+
+.gallery-toggle-arrow::before {
+    content: "";
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    border-right: 2px solid #E8E2D2;
+    border-bottom: 2px solid #E8E2D2;
+    transform: rotate(45deg);
+    top: 14px;
+    left: 15px;
+}
