@@ -2137,3 +2137,186 @@ pointer-events: auto;
     white-space: nowrap;
 }
 
+
+
+
+/* =================================
+   HAND-DRAWN GOLD DOODLES
+================================= */
+
+:root {
+    --doodle-gold: #C6A45C;
+    --doodle-gold-soft: #D4B979;
+}
+
+/* Give sections room for decorations */
+.hero,
+.intro,
+.team,
+.gallery,
+.yearbook,
+.shop {
+    position: relative;
+}
+
+/* Little gold stars */
+.hero-content::after,
+.intro-copy::after,
+.yearbook-copy::after,
+.section-heading::after {
+    content: "✧";
+    position: absolute;
+    color: var(--doodle-gold);
+    font-size:  thirty;
+    font-size: 30px;
+    font-weight: 400;
+    pointer-events: none;
+}
+
+.hero-content::after {
+    right: 4%;
+    bottom: 5%;
+    font-size: 25px;
+}
+
+.intro-copy::after {
+    right: -35px;
+    top: 5px;
+    font-size: 28px;
+}
+
+.yearbook-copy::after {
+    right: 0;
+    top: -35px;
+    font-size: 30px;
+}
+
+.section-heading {
+    position: relative;
+}
+
+.section-heading::after {
+    right: 2%;
+    top: -22px;
+    font-size: 24px;
+}
+
+/* Three fanning emphasis strokes */
+.hero h1,
+.intro h2,
+.section-heading h2,
+.yearbook-copy h2 {
+    position: relative;
+}
+
+.hero h1::after,
+.intro h2::after,
+.section-heading h2::after,
+.yearbook-copy h2::after {
+    content: "";
+    position: absolute;
+    width: 38px;
+    height: 32px;
+    right: -43px;
+    top: 0;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 32'%3E%3Cg fill='none' stroke='%23C6A45C' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M3 23 Q9 13 17 5'/%3E%3Cpath d='M20 26 Q24 15 25 3'/%3E%3Cpath d='M32 23 Q38 14 47 10'/%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+}
+
+/* Small stars around team carousels */
+.member-carousel {
+    position: relative;
+}
+
+.member-carousel::after {
+    content: "✦";
+    position: absolute;
+    top: -24px;
+    right: 12px;
+    color: var(--doodle-gold);
+    font-size: 19px;
+    pointer-events: none;
+}
+
+/* Curly arrow accents around carousels */
+.member-carousel[data-carousel="girls"]::before,
+.member-carousel[data-carousel="boys"]::before {
+    content: "↝";
+    position: absolute;
+    top: -34px;
+    left: 45%;
+    color: var(--doodle-gold);
+    font-size:  thirty;
+    font-size: 30px;
+    transform: rotate(-25deg);
+    pointer-events: none;
+}
+
+/* Gallery sparkle */
+.gallery-collapsible {
+    position: relative;
+}
+
+.gallery-collapsible::after {
+    content: "✧";
+    position: absolute;
+    top: 4px;
+    right: 15%;
+    color: var(--doodle-gold);
+    font-size: 27px;
+    pointer-events: none;
+}
+
+/* Yearbook cover accent */
+.yearbook-cover::before {
+    content: "✳";
+    position: absolute;
+    top: 38%;
+    left: -28px;
+    color: var(--doodle-gold);
+    font-size: 27px;
+    pointer-events: none;
+}
+
+/* Merch accents */
+.product-card {
+    position: relative;
+}
+
+.product-card::after {
+    content: "✧";
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    color: var(--doodle-gold);
+    font-size: 21px;
+    pointer-events: none;
+}
+
+/* Keep doodles subtle on smaller screens */
+@media (max-width: 700px) {
+    .hero h1::after,
+    .intro h2::after,
+    .section-heading h2::after,
+    .yearbook-copy h2::after {
+        width: 27px;
+        height: 23px;
+        right: -25px;
+    }
+
+    .intro-copy::after,
+    .yearbook-copy::after {
+        display: none;
+    }
+
+    .member-carousel[data-carousel]::before {
+        display: none;
+    }
+
+    .section-heading::after {
+        right: 0;
+        top: -15px;
+    }
+}
