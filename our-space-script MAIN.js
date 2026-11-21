@@ -367,6 +367,7 @@ document.querySelectorAll(".member-carousel").forEach((carousel) => {
     const form = document.querySelector("#memory-form");
     const nameInput = document.querySelector("#memory-name");
     const messageInput = document.querySelector("#memory-message");
+    const colorInputs = document.querySelectorAll('input[name="color"]');
     const submitButton = document.querySelector("#memory-submit");
     const formStatus = document.querySelector("#memory-form-status");
     const cardsContainer = document.querySelector("#memory-cards");
@@ -399,6 +400,15 @@ document.querySelectorAll(".member-carousel").forEach((carousel) => {
         memories.forEach((memory) => {
             const card = document.createElement("article");
             card.className = "memory-card";
+            const allowedColors = ["yellow", "pink", "blue", "green", "lavender", "peach"];
+            const color = allowedColors.includes(memory.color) ? memory.color : "yellow";
+            card.dataset.color = color;
+
+            // Small per-card variations create a casual, pinboard-like arrangement.
+            const rotation = (Math.random() * 7 - 3.5).toFixed(2);
+            const offset = (Math.random() * 12 - 6).toFixed(1);
+            card.style.setProperty("--note-rotation", `${rotation}deg`);
+            card.style.setProperty("--note-offset", `${offset}px`);
 
             const message = document.createElement("p");
             message.textContent = memory.message;
@@ -415,7 +425,7 @@ document.querySelectorAll(".member-carousel").forEach((carousel) => {
     async function loadMemories() {
         try {
             const response = await fetch(
-                `${MEMORY_ENDPOINT}?select=id,name,message,created_at&order=created_at.desc`,
+                `${MEMORY_ENDPOINT}?select=id,name,message,color,created_at&order=created_at.desc`,
                 { headers: requestHeaders }
             );
 
@@ -440,6 +450,9 @@ document.querySelectorAll(".member-carousel").forEach((carousel) => {
 
         const name = nameInput.value.trim() || "Anonymous";
         const message = messageInput.value.trim();
+        const selectedColor = form.querySelector('input[name="color"]:checked')?.value || "yellow";
+        const allowedColors = ["yellow", "pink", "blue", "green", "lavender", "peach"];
+        const color = allowedColors.includes(selectedColor) ? selectedColor : "yellow";
 
         if (!message) {
             showFormStatus("Please write a message before submitting.", "error");
@@ -464,7 +477,7 @@ document.querySelectorAll(".member-carousel").forEach((carousel) => {
                     "Content-Type": "application/json",
                     "Prefer": "return=minimal"
                 },
-                body: JSON.stringify({ name, message })
+                body: JSON.stringify({ name, message, color })
             });
 
             if (!response.ok) {
