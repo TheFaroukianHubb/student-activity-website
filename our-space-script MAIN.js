@@ -229,7 +229,7 @@ renderGallery();
 
 /* Back to Top button */
 const backToTop = document.createElement("button");
-backToTop.textContent = "↑";
+backToTop.textContent = "â†‘";
 backToTop.className = "back-to-top";
 backToTop.setAttribute("aria-label", "Back to top");
 backToTop.type = "button";
@@ -264,7 +264,7 @@ simulatePaymentButton?.addEventListener("click", () => {
 
     const reference = `DEMO-${Date.now().toString().slice(-8)}`;
     paymentTestStatus.textContent = "Demo event: payment marked as verified by the test simulator.";
-    paymentNotificationMessage.textContent = `TEST PAYMENT VERIFIED · EGP ${amount.toFixed(2)} · Reference ${reference}. This is a simulated event, not a real bank confirmation.`;
+    paymentNotificationMessage.textContent = `TEST PAYMENT VERIFIED Â· EGP ${amount.toFixed(2)} Â· Reference ${reference}. This is a simulated event, not a real bank confirmation.`;
     paymentNotificationPreview.hidden = false;
 });
 // Committee member carousels
@@ -356,3 +356,133 @@ document.querySelectorAll(".member-carousel").forEach((carousel) => {
     startTimer();
 });
 
+
+
+/* Memory Wall â€” public submissions are held for team approval in Supabase. */
+(() => {
+    const SUPABASE_URL = "https://ymluiuaaayuaupyllymh.supabase.co";
+    const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_Zou-9TG9OUE0al6xqQw6Sg_BuiHU8f_";
+    const MEMORY_ENDPOINT = `${SUPABASE_URL}/rest/v1/memory_messages`;
+
+    const form = document.querySelector("#memory-form");
+    const nameInput = document.querySelector("#memory-name");
+    const messageInput = document.querySelector("#memory-message");
+    const submitButton = document.querySelector("#memory-submit");
+    const formStatus = document.querySelector("#memory-form-status");
+    const cardsContainer = document.querySelector("#memory-cards");
+
+    if (!form || !nameInput || !messageInput || !submitButton || !formStatus || !cardsContainer) {
+        return;
+    }
+
+    const requestHeaders = {
+        "apikey": SUPABASE_PUBLISHABLE_KEY,
+        "Authorization": `Bearer ${SUPABASE_PUBLISHABLE_KEY}`
+    };
+
+    function showFormStatus(message, state = "") {
+        formStatus.textContent = message;
+        formStatus.dataset.state = state;
+    }
+
+    function renderMemories(memories) {
+        cardsContainer.replaceChildren();
+
+        if (!memories.length) {
+            const emptyMessage = document.createElement("p");
+            emptyMessage.className = "memory-empty";
+            emptyMessage.textContent = "The wall is waiting for its first approved memories.";
+            cardsContainer.appendChild(emptyMessage);
+            return;
+        }
+
+        memories.forEach((memory) => {
+            const card = document.createElement("article");
+            card.className = "memory-card";
+
+            const message = document.createElement("p");
+            message.textContent = memory.message;
+
+            const author = document.createElement("p");
+            author.className = "memory-card-author";
+            author.textContent = `â€” ${memory.name || "Anonymous"}`;
+
+            card.append(message, author);
+            cardsContainer.appendChild(card);
+        });
+    }
+
+    async function loadMemories() {
+        try {
+            const response = await fetch(
+                `${MEMORY_ENDPOINT}?select=id,name,message,created_at&order=created_at.desc`,
+                { headers: requestHeaders }
+            );
+
+            if (!response.ok) {
+                throw new Error(`Request failed (${response.status})`);
+            }
+
+            const memories = await response.json();
+            renderMemories(Array.isArray(memories) ? memories : []);
+        } catch (error) {
+            console.error("Could not load Memory Wall messages:", error);
+            cardsContainer.replaceChildren();
+            const errorMessage = document.createElement("p");
+            errorMessage.className = "memory-empty";
+            errorMessage.textContent = "The Memory Wall couldn't load right now. Please try again later.";
+            cardsContainer.appendChild(errorMessage);
+        }
+    }
+
+    form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const name = nameInput.value.trim() || "Anonymous";
+        const message = messageInput.value.trim();
+
+        if (!message) {
+            showFormStatus("Please write a message before submitting.", "error");
+            messageInput.focus();
+            return;
+        }
+
+        if (name.length > 40 || message.length > 500) {
+            showFormStatus("Your name must be 40 characters or fewer, and your message 500 or fewer.", "error");
+            return;
+        }
+
+        submitButton.disabled = true;
+        submitButton.textContent = "Sending...";
+        showFormStatus("");
+
+        try {
+            const response = await fetch(MEMORY_ENDPOINT, {
+                method: "POST",
+                headers: {
+                    ...requestHeaders,
+                    "Content-Type": "application/json",
+                    "Prefer": "return=minimal"
+                },
+                body: JSON.stringify({ name, message })
+            });
+
+            if (!response.ok) {
+                const details = await response.text();
+                console.error("Memory Wall submission failed:", response.status, details);
+                throw new Error(`Request failed (${response.status})`);
+            }
+
+            form.reset();
+            showFormStatus("Thank you! Your memory has been sent for review and will appear after the team approves it.", "success");
+        } catch (error) {
+            console.error("Could not submit Memory Wall message:", error);
+            showFormStatus("We couldn't send your message. Please check your connection and try again.", "error");
+        } finally {
+            submitButton.disabled = false;
+            submitButton.textContent = "Send your memory";
+        }
+    });
+
+    loadMemories();
+})();
