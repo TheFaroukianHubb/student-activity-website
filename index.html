@@ -482,6 +482,72 @@
 			</div>
 		</dialog>
 
+
+<section class="memory-wall section-pad" id="memory-wall">
+    <div class="section-heading">
+        <div>
+            <p class="eyebrow">MESSAGES WE WANT TO KEEP</p>
+            <h2>The Memory <span>Wall.</span></h2>
+        </div>
+        <p class="section-description">
+            Some things are too good to leave behind.
+            Leave a little message for everyone to remember.
+        </p>
+    </div>
+
+    <div class="memory-wall-content">
+        <div class="memory-intro">
+            <p class="memory-wall-note">A LITTLE SPACE FOR YOUR WORDS</p>
+            <h3>Got something to say?</h3>
+            <p>
+                A favourite memory, a thank-you, an inside joke,
+                or a message to your future self. We'd love to read it.
+            </p>
+        </div>
+
+        <form class="memory-form" id="memory-form">
+            <div class="memory-field">
+                <label for="memory-name">Your name <span>(optional)</span></label>
+                <input
+                    type="text"
+                    id="memory-name"
+                    name="name"
+                    maxlength="40"
+                    placeholder="How should we sign your message?"
+                >
+            </div>
+
+            <div class="memory-field">
+                <label for="memory-message">Your message</label>
+                <textarea
+                    id="memory-message"
+                    name="message"
+                    rows="5"
+                    maxlength="500"
+                    placeholder="Write something worth remembering..."
+                    required
+                ></textarea>
+            </div>
+
+            <p class="memory-privacy">
+                Messages are reviewed by the team before appearing
+                on the wall.
+            </p>
+
+            <button class="button button-dark" type="button" disabled>
+                Submissions opening soon
+            </button>
+        </form>
+    </div>
+
+    <div class="memory-cards" id="memory-cards">
+        <p class="memory-empty">
+            The wall is waiting for its first memories.
+        </p>
+    </div>
+</section>
+
+
 		<section class="yearbook section-pad" id="yearbook">
 			<div class="yearbook-art">
 				<div class="yearbook-cover">
