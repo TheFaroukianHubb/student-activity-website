@@ -229,7 +229,7 @@ renderGallery();
 
 /* Back to Top button */
 const backToTop = document.createElement("button");
-backToTop.textContent = "â†‘";
+backToTop.textContent = "\u2191";
 backToTop.className = "back-to-top";
 backToTop.setAttribute("aria-label", "Back to top");
 backToTop.type = "button";
@@ -415,7 +415,7 @@ document.querySelectorAll(".member-carousel").forEach((carousel) => {
 
             const author = document.createElement("p");
             author.className = "memory-card-author";
-            author.textContent = `â€” ${memory.name || "Anonymous"}`;
+           author.textContent = `\u2014 ${memory.name || "Anonymous"}`;
 
             card.append(message, author);
             cardsContainer.appendChild(card);
