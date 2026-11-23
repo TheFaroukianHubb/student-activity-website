@@ -313,7 +313,10 @@ document.querySelectorAll(".member-carousel").forEach((carousel) => {
     function startTimer() {
         clearInterval(timer);
         if (!paused && cards.length > visibleCards()) {
-            timer = setInterval(moveNext, 4000);
+          timer = setInterval(
+    carousel.dataset.carousel === "boys" ? movePrev : moveNext,
+    1000
+);
         }
     }
 
