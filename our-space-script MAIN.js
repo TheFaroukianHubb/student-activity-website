@@ -313,7 +313,7 @@ document.querySelectorAll(".member-carousel").forEach((carousel) => {
     function startTimer() {
         clearInterval(timer);
         if (!paused && cards.length > visibleCards()) {
-            timer = setInterval(moveNext, 1000);
+            timer = setInterval(moveNext, 4000);
         }
     }
 
